@@ -11,6 +11,4 @@ module.exports = function dateSample(sample) {
   const T = Math.ceil((Math.log(MODERN_ACTIVITY / sample)) / K);
 
   return isNaN(T) ? false : T;
-
-  throw 'Not implemented';
 };

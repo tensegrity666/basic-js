@@ -15,6 +15,4 @@ module.exports = function countCats(backyard) {
   };
 
   return (findCat(toFlat));
-
-  throw 'Not implemented';
 };
