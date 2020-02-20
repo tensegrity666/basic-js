@@ -3,6 +3,10 @@ module.exports = function getSeason(date) {
     return 'Unable to determine the time of year!';
   };
 
+  if (!date.getMonth || Object.keys(date).length > 0) {
+    throw Error('Error');
+  };
+
   const seasons = {
     winter: [11, 0, 1],
     spring: [2, 3, 4],
@@ -11,7 +15,8 @@ module.exports = function getSeason(date) {
   };
 
   for (let season in seasons) {
-    if (seasons[season].includes(date.getMonth()))
+    if (seasons[season].includes(date.getMonth())) {
       return season;
+    };
   };
 };
