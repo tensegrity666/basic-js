@@ -5,7 +5,7 @@ module.exports = function getSeason(date) {
 
   if (!date.getMonth || Object.keys(date).length > 0) {
     throw Error('Error');
-  };
+  }; //! check for typeOf string don't pass the tricky test
 
   const seasons = {
     winter: [11, 0, 1],
