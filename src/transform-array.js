@@ -51,9 +51,14 @@ module.exports = function transform(arr) {
                 return arr;
             }
         } else if (arr.length === 1) {
-            return [];
+            return arr = [];
         }
 
     }
     return arr;
 };
+
+//! it working im my IDE with quokka extension, but tests failed on:
+// Transform array
+// functional requirements
+// action flags work properly:
