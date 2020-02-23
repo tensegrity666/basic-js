@@ -1,15 +1,14 @@
 module.exports = class DepthCalculator {
-    calculateDepth(arr) {
-        let depth = 0;
 
-        arr.forEach(element => {
-            if (!Array.isArray(element)) {
-                return depth = 1;
-            } else {
-                depth++;
-                return arr = arr.flat();
-            }
-        });
-        return depth;
-    }
+  calculateDepth(arr) {
+    const toFlat = arr.flat();
+    let depth = 1;
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+          return depth += this.calculateDepth(toFlat);
+        }
+      }
+  return depth;
+  }
+
 };
