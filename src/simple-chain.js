@@ -6,11 +6,20 @@ const chainMaker = {
   },
 
   addLink: function addLink(value) {
-    this.chain.push(`( ${value} )`);
-    return this;
+    if (value === undefined) {
+      this.chain.push(`( )`);
+      return this;
+    } else {
+      this.chain.push(`( ${value} )`);
+      return this;
+    }
   },
 
   removeLink: function removeLink(position) {
+    if (typeof position !== 'number' || position > this.getLength() || position <= 0) {
+      this.chain = [];
+      throw Error('Error!');
+    }
     this.chain.splice(position - 1, 1);
     return this;
   },
@@ -21,7 +30,9 @@ const chainMaker = {
   },
 
   finishChain: function finishChain() {
-    return this.chain.join('~~');
+    const newArr = [...this.chain];
+    this.chain = [];
+    return newArr.join('~~');
   }
 };
 
