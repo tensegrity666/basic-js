@@ -5,9 +5,13 @@ class VigenereCipheringMachine {
             throw Error('Error!');
         }
 
+        const BASE_ALPHABET = 26;
+        const BASE_UNICODE = 65;
         let encriptedMessage = [];
         let cryptoKey = [];
-        const BASE = 26;
+        const result = [];
+        message = message.toUpperCase();
+        key = key.toUpperCase();
 
         while (message.length > key.length) {
             key = key.concat(key);
@@ -15,20 +19,22 @@ class VigenereCipheringMachine {
 
         for (let i = 0; i < message.length; i++) {
             cryptoKey.push(key.charCodeAt(i));
-            encriptedMessage.push(message.charCodeAt(i));
-            encriptedMessage[i] += cryptoKey[i] % BASE;
+
+            console.log(encriptedMessage);
+            if ((message.charCodeAt(i) >= 32) || (message.charCodeAt(i) <= 57)) {
+                encriptedMessage[i] = message.charCodeAt(i);
+            }
+
+            if (message.charCodeAt(i) >= 65) {
+                encriptedMessage[i] = ((encriptedMessage[i] + cryptoKey[i]) % BASE_ALPHABET) + BASE_UNICODE;
+            }
         }
 
-        encriptedMessage = encriptedMessage.join(',');
+        for (let i = 0; i < encriptedMessage.length; i++) {
+            result.push(String.fromCharCode(encriptedMessage[i]));
+        }
 
-        console.log(String.fromCharCode(112));
-        console.log(key.charCodeAt(1));
-        console.log(message.charCodeAt(0));
-        console.log(encriptedMessage);
-        console.log(cryptoKey);
-        console.log(cryptoKey.length);
-        return encriptedMessage;
-
+        return result.join('');
     };
 
     decrypt(encryptedMessage, key) {
