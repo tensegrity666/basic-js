@@ -1,4 +1,6 @@
 module.exports = function repeater(str, options) {
+    let repeated = '';
+
     if (typeof str !== 'string') {
         str = str.toString();
     }
@@ -27,11 +29,21 @@ module.exports = function repeater(str, options) {
     };
 
 
-    const addSeparate = options.addition + options.additionSeparator;
-    const addRepeat = addSeparate.repeat(options.additionRepeatTimes);
-    const lastAddSeparator = addRepeat.lastIndexOf(options.additionSeparator);
-    const repeatWithSeparator = addRepeat.slice(0, lastAddSeparator) + options.separator;
-    const stringToRepeat = str + repeatWithSeparator;
+    for (let i = 0; i < options.repeatTimes; i++) {
+        repeated += str;
 
-    return stringToRepeat.repeat(options.repeatTimes);
+        for (let j = 0; j < options.additionRepeatTimes; j++) {
+            repeated += options.addition;
+
+            if (j < options.additionRepeatTimes - 1) {
+                repeated += options.additionSeparator;
+            }
+        }
+
+        if (i < options.repeatTimes - 1) {
+            repeated += options.separator;
+        }
+    }
+
+    return repeated;
 };
